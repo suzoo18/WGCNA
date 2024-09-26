@@ -229,6 +229,25 @@ verboseScatterplot(abs(geneModuleMembership[moduleGenes, column]),
                    cex.main = 1.2, cex.lab = 1.2, cex.axis = 1.2, col = module)
 dev.off()
 ```
+
+在 `verboseScatterplot` 函数中，`cor` 表示的是两个变量之间的相关性系数。在你的代码中，这个相关性是指 **基因模块成员关系（Module Membership）** 和 **基因性状显著性（Gene Trait Significance）** 之间的相关性。
+
+具体来说：
+- **Module Membership**：表示每个基因在特定模块中的成员关系，通常通过计算基因表达数据与模块特征基因（module eigengene）的相关性来获得。
+- **Gene Trait Significance**：表示每个基因与某个外部性状（例如天数）的相关性。
+
+因此，图中的 `cor` 值反映了 **模块成员关系** 和 **基因性状显著性** 之间的相关性程度。这个值可以帮助你理解哪些基因在模块中不仅具有高的成员关系，同时也与外部性状显著相关。
+
+如果你有更多关于 WGCNA 分析的问题，随时告诉我！
+
+源: 与 Copilot 的对话， 2024/9/26
+(1) WGCNA函数之verboseScatterplot出图重绘 - 知乎. https://zhuanlan.zhihu.com/p/559803426.
+(2) 当我做WGCNA时，我在做什么 - 知乎. https://zhuanlan.zhihu.com/p/68731522.
+(3) WGCNA 简明指南|2. 模块与性状关联分析并识别重要基因 - 简书. https://www.jianshu.com/p/2843e27735dd.
+(4) 跟着一起实验学WGCNA 最“细腻小白”的学习笔记分享（3）. https://zhuanlan.zhihu.com/p/168262193.
+(5) 小果手把手教你用GS-MM散点图挖掘WGCNA的hub基因. https://www.bilibili.com/read/cv22284344/.
+(6) undefined. https://www.yisu.com/zixun/658462.html.
+
 ![散点图](https://github.com/nanshanjin/WGCNA/blob/master/step3.verboseScatterplot.png)
 ### step7 选取指定模块基因名
 
