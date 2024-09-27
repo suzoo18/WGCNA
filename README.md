@@ -259,6 +259,36 @@ probes = names(datExpr)
 inModule = (moduleColors==module);
 modProbes = probes[inModule];
 ```
+###
+Tips:输出总基因的GS和MM数据
+```shell
+geneInfo0 = data.frame('gene_id' = colnames(exp), #加上各基因的GS和pGS
+                       'moduleColor' = modColors.exp,
+                       geneTraitSignificance = GS,
+                       geneTraitSignificanc_pvalue = GS.pvalue)
+ 
+modOrder = order(abs(cor(ME, spe_trait, use = "p")),decreasing = T) #对module与表型间的相关性进行排序
+for (mod in 1:ncol(MM)){ #将各基因的MM和pMM加入到geneInfo0中
+  oldNames = names(geneInfo0)
+  geneInfo0 = data.frame(geneInfo0, 
+                         MM[, modOrder[mod]], #列在前的是和表型相关度较高的module
+                         MM.pvalue[, modOrder[mod]])
+  names(geneInfo0) = c(oldNames, 
+                       paste("MM.", modColors.ME[modOrder[mod]], sep=""),
+                       paste("pMM.", modColors.ME[modOrder[mod]], sep=""))
+}
+ 
+geneOrder = order(geneInfo0$moduleColor, abs(geneInfo0$GS.special_trait), decreasing = T);geneInfo = geneInfo0[geneOrder, ]  #对各module中的基因的GS降序排列
+ 
+write.csv(geneInfo,file = "geneInfo.csv",quote = T,row.names = T)
+```
+————————————————
+
+                            版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。
+                        
+原文链接：https://blog.csdn.net/weixin_59289660/article/details/126098834
+
+
 ### step8 模块导出
 ```shell
 # Recalculate topological overlap
