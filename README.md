@@ -260,7 +260,8 @@ inModule = (moduleColors==module);
 modProbes = probes[inModule];
 ```
 ###
-Tips:输出总基因的GS和MM数据
+
+##Tips:输出总基因的GS和MM数据
 ```shell
 geneInfo0 = data.frame('gene_id' = colnames(exp), #加上各基因的GS和pGS
                        'moduleColor' = modColors.exp,
